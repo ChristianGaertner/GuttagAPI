@@ -2,6 +2,7 @@ package de.cpgaertner.seeme.guttag.resources.v1;
 
 import de.cpgaertner.seeme.guttag.core.User;
 import de.cpgaertner.seeme.guttag.db.UserDAO;
+import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 import lombok.AllArgsConstructor;
 
@@ -17,6 +18,7 @@ public class UserResource {
     private final UserDAO userDAO;
 
     @GET
+    @UnitOfWork
     public User getUser(@PathParam("userId") LongParam userId) {
         return find(userId.get());
     }
