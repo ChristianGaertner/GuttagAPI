@@ -15,17 +15,17 @@ import javax.ws.rs.core.MediaType;
 @Getter(AccessLevel.PRIVATE)
 public class VersionResource {
 
-    private final String test;
+    private final String version;
     private final long id = 0;
 
-    public VersionResource(String test) {
-        this.test = test;
+    public VersionResource(String version) {
+        this.version = version;
     }
 
     @GET
     @Timed
     public Version test() {
-        return new Version(0, test);
+        return new Version(getId(), getVersion());
     }
 
 }
