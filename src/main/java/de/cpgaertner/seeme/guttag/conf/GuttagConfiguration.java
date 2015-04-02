@@ -12,5 +12,5 @@ public class GuttagConfiguration extends Configuration {
 
     @JsonProperty
     @NotEmpty
-    private String test;
+    private String version;
 }

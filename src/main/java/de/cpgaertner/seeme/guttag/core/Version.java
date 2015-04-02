@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class Test {
+public class Version {
 
     @JsonProperty
     private long id;

@@ -1,7 +1,7 @@
 package de.cpgaertner.seeme.guttag.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import de.cpgaertner.seeme.guttag.core.Test;
+import de.cpgaertner.seeme.guttag.core.Version;
 import lombok.AccessLevel;
 import lombok.Getter;
 
@@ -9,25 +9,23 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.concurrent.atomic.AtomicLong;
 
-@Path("/test")
+@Path("/version")
 @Produces(MediaType.APPLICATION_JSON)
 @Getter(AccessLevel.PRIVATE)
-public class TestResource {
+public class VersionResource {
 
     private final String test;
-    private final AtomicLong counter;
+    private final long id = 0;
 
-    public TestResource(String test) {
+    public VersionResource(String test) {
         this.test = test;
-        this.counter = new AtomicLong();
     }
 
     @GET
     @Timed
-    public Test test() {
-        return new Test(counter.incrementAndGet(), test);
+    public Version test() {
+        return new Version(0, test);
     }
 
 }
