@@ -20,6 +20,11 @@ public class UserDAO extends AbstractDAO<User> {
         return persist(user);
     }
 
+    public User update(User user) {
+        currentSession().update(user);
+        return user;
+    }
+
     public List<User> findAll() {
         return list(namedQuery("de.cpgaertner.seeme.guttag.core.User.findAll"));
     }

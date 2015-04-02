@@ -6,6 +6,7 @@ import de.cpgaertner.seeme.guttag.db.UserDAO;
 import de.cpgaertner.seeme.guttag.resources.ApplicationResource;
 import de.cpgaertner.seeme.guttag.resources.VersionResource;
 import de.cpgaertner.seeme.guttag.resources.v1.UserResource;
+import de.cpgaertner.seeme.guttag.resources.v1.UsersResource;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -42,5 +43,6 @@ public class GuttagApplication extends Application<GuttagConfiguration> {
         env.jersey().register(new VersionResource(conf.getVersion()));
         env.jersey().register(new ApplicationResource());
         env.jersey().register(new UserResource(userDAO));
+        env.jersey().register(new UsersResource(userDAO));
     }
 }
