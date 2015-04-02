@@ -1,1 +1,7 @@
 version: Guttag v0.1-SNAPSHOT
+
+database:
+  driverClass: org.h2.Driver
+  user: sa
+  password: sa
+  url: jdbc:h2:./target/example
