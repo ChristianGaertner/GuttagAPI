@@ -32,8 +32,12 @@ public class UserResource {
 
     @POST
     @UnitOfWork
-    public User create(@Valid User user) {
-        return userDAO.create(user);
+    public Response create(@Valid User user) {
+        user = userDAO.create(user);
+
+        return Response.created(
+                UriBuilder.fromResource(UserResource.class).build(user.getId())
+        ).build();
     }
 
     @Path("/{userId}")
@@ -49,13 +53,28 @@ public class UserResource {
     public Response update(@PathParam("userId") LongParam userId, @Valid User user) {
         find(userId.get());
 
+        assert userId.get() != null;
+
+        if (user == null) {
+            throw new BadRequestException("No user data provided.");
+        }
+
         user.setId(userId.get());
         userDAO.update(user);
-        return Response.created(
-                UriBuilder.fromResource(UserResource.class)
-                        .build(user.getId())
-        ).build();
+        return Response.ok(user).build();
     }
+
+    @Path("/{userId}")
+    @DELETE
+    @UnitOfWork
+    public Response delete(@PathParam("userId") LongParam userId) {
+        User user = find(userId.get());
+
+        userDAO.delete(user);
+
+        return Response.ok().build();
+    }
+
 
     private User find(Long id) {
         final Optional<User> user = userDAO.findById(id);

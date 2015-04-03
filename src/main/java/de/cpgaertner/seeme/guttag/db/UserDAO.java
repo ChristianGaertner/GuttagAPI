@@ -25,6 +25,10 @@ public class UserDAO extends AbstractDAO<User> {
         return user;
     }
 
+    public void delete(User user) {
+        currentSession().delete(user);
+    }
+
     public List<User> findAll() {
         return list(namedQuery("de.cpgaertner.seeme.guttag.core.User.findAll"));
     }
