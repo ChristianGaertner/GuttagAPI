@@ -1,10 +1,10 @@
 package de.cpgaertner.seeme.guttag.resources.v1;
 
+import com.google.inject.Inject;
 import de.cpgaertner.seeme.guttag.core.User;
 import de.cpgaertner.seeme.guttag.db.UserDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
-import lombok.AllArgsConstructor;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -17,11 +17,14 @@ import java.util.Optional;
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@AllArgsConstructor
 public class UserResource {
 
     private final UserDAO userDAO;
 
+    @Inject
+    public UserResource(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     @GET
     @UnitOfWork

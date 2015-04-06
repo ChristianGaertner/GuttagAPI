@@ -1,5 +1,7 @@
 package de.cpgaertner.seeme.guttag.db;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import de.cpgaertner.seeme.guttag.core.User;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
@@ -7,7 +9,9 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 import java.util.Optional;
 
+@Singleton
 public class UserDAO extends AbstractDAO<User> {
+    @Inject
     public UserDAO(SessionFactory sessionFactory) {
         super(sessionFactory);
     }

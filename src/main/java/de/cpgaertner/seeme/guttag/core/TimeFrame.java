@@ -3,6 +3,7 @@ package de.cpgaertner.seeme.guttag.core;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,9 @@ public class TimeFrame {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
+    private User owner;
 
     @NotNull
     private long start;
