@@ -25,6 +25,7 @@ public class TimeFrame {
     private long id;
 
     @NotNull
+    @ManyToOne
     private User owner;
 
     @NotNull
